@@ -1,0 +1,160 @@
+branch 복습
+
+원본을 여러개 복사해서 가공 수정해 가는 방식을 적용하기 위해사용
+
+그래서 각 기능별로 브런치를 나누고 나중에 마진을 통해 조립하면 됨
+
+마스터는 최종적인 장소
+
+기본은 디벨롭 에서 브런치를 나눠 작업하고 마진 통해서 최종 조립을 한 후
+마스터에 올린다.
+
+보통 브런치명은 /feature-기능명 으로 짓는게 일반적
+
+깃 허브에 브런치 생성후
+
+cmd 에서 git pull origin 브런치명 으로 내 작업저장소로 당겨옴
+이거 안한 상태에선 cmd에서 git branch -a해도 리스트에 생성한 브런치
+안보임
+
+당겨오고 난 후 git checkout 브런치명 으로 브런치 이동이 가능해진다.
+
+브런치 이동
+git checkout 브런치명
+
+
+체크아웃으로 가져올경우 바로 내 폴더에 반영됨
+
+풀로 가져 온 경우 주의점
+브런치를 도중에 변경한다면 내폴더는 이전 브런치 데이터를 가져온것이기에
+변경후 브런치 데이터를 pull로 땅기면 반영이 안됨
+
+해결책 ; 최신 develop내용을 풀로 당겨오고
+내 브런치를 파서 여기에 올려두는게 좋다. 
+
+
+
+
+포크작업
+
+보통 관리지가 내 아이디 친구등록 할거임 그럼 내 이메일로 초대 메일이 올거고
+응하면 토크 딸 준비가됨
+
+포크 따는 이유 : 원본의 직접 수정은 리스크가 크기 때문에 
+각자 포크 즉 복제본을 따서 작업을 해 확인 후 원본에 반영 시킨다.
+
+설명 ; 토크 따서 업스트림과 오리진등으로 원본분과 구분해 작업 후 수정을 
+한 후 원본에 반영 요청을 통해 원본에 바녕 시키는 작업까지 해보았습니다.
+
+포크를 딸 시 레포지트가 고대로 복사 된다. (클론 주소도 동일 하다)
+원본과 구별을 위해 원본은 upstream을 사용하고 포크딴 복사본은 origin을
+쓴다.
+
+원본 - upstream
+포크본 - origin
+(통상 이렇게 쓴다.)
+
+보통 리모트로 연동 시킬시 
+git remote add origin 주소 <-- 이게 포크본 이란 뜻
+
+git remote add upstream 주소 <-- 이게 원본 주소란 뜻
+
+그러면 다음과 같이 확인 할 시 
+origin 주소
+upstream 주소
+이렇게 뜰거임 이걸로 원본과 복사 본을 구별함
+
+C:\taehwan\java\0808>git remote -v
+origin  https://github.com/yaskanchapa/9thHomeWork/tree/%ED%83%9C%ED%99%98 (fetch)
+origin  https://github.com/yaskanchapa/9thHomeWork/tree/%ED%83%9C%ED%99%98 (push)
+
+상대 초대장 들어가면 오른쪽 위에 포크클릭
+
+그럼 내 깃헙에 복사된 레포지트가 생길 거임
+
+폴더 생성
+그후
+git init 
+git remote add origin 주소
+git pull origin 브런치명
+git checkout 브런치명 <- 브런치 이동 풀로 다 당겨와야 브런치명이추가됨
+
+아침에 최신 원본을 받아 오기
+git remote add upstream 주소
+
+예)
+C:\taehwan\java\0808>git remote add upstream https://github.com/yaskanchapa/9thHomeWork.git
+
+C:\taehwan\java\0808>git remote -v
+origin  https://github.com/yaskanchapa/9thHomeWork.git (fetch)
+origin  https://github.com/yaskanchapa/9thHomeWork.git (push)
+upstream        https://github.com/beemilly/9thHomeWork.git (fetch)
+upstream        https://github.com/beemilly/9thHomeWork.git (push)
+
+이렇게 오리진 - 포크본, 업스트림 - 원본이 구별된다.
+
+일단 바로 당겨오지말고 확인만하기위해 fetch
+git fetch upstream develop 
+
+그 후 내 브런치에 새로 만든다
+git rebase  upstream/master 
+
+rebase를 하는 이유는 pull로 가져오면 pull은 병합처리이기때문에
+충돌이 일어남 rebase는 갈아끼는 성격이기에 충돌처리가 안나기 때문에
+fetch로 한번 보고 rebase로 갈아끼우는 처리를 한다.
+
+로컬 저장소 내용을 원격저장소에 반영한다. ( 이때 는 포크쪽에다가 반영시킴)
+git push origin master
+
+그후 포크 걸 원본에 반영 시킨다.
+
+compare and pull request버튼 활성화됨
+이거 눌러서 어느 브런치에 pull 할건지 메세지 입력해서 
+송신
+관리자가 소스 확인
+수정 요청 받았을시 이경우는 포크에 올려두면 관리자에게 요청간건 자동 반영됨
+
+
+<면접>
+이 말이 중요
+포크를 어떻게 사용 했는지 말하는게 중요
+
+포크에서 업스트림과 오리진을 통해 원본과 복사본을 구별해 작업을 하였고
+작업이 완료된 후에는 
+pull request를 통해 최종 요청을 했고 marge pull request 처리를
+받아 작업을 완료했다.
+
+일본에 왜 왔는지란 질문은 항상나옴 중요하기도 하고
+오래 일본에 있을 수 있단게 어필되면 좋다.
+
+곤란할 시 어떻게 해결 하는가
+개인적으로 해결책을 찾아보고 상사에게 보고를 한 후 부족한 부분은 수정받아
+처리를 합니다.
+
+<정리>
+리더에 내 아이디를 준다.
+리더로부터 요청이 올거임(이메일에)
+들어가 오른쪽 상단에 Fork 따감
+그럼 내 레포지트에 복사 딴 레포지특 추가됨
+그럼 이제 이 후는 깃 클론으로 pull 내려와서
+내 포크에 푸쉬해서 올리고 
+가장 마지막에 pull request를 통해 보고 올리고
+수정을 한 후 마지 pulll request를 통해 최종 병합처리를 했다.
+
+
+포크는 원본 직접 수정하는게 리스크 있기에 복사본으로 작업을 하는 것.
+본서버 내용이 최신으로 갱신되는 경우
+본서버 내용을 로컬에 가져와서 이걸 우리 포크에 올려야 된다.
+그렇게 업스트림과 오리진 리베이스 기능이 있다는걸 알아두라
+
+면접 설명시 업스트림에서 가져와 오리진 에 반영해 이렇게 처리했다란 설명
+하면 된다.
+
+
+<현장 팁>
+현장에서 업무 시 아침에 최신 develop을 확인후 내 작업 내용은 따로 백업
+그리고 최신 develop을 풀로 당겨옴
+<깃 명령어>
+
+깃은 히스토리에 이력이 남아있기 떄문에 수정이 용이하다.
+
