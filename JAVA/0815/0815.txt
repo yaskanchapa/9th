@@ -74,6 +74,29 @@ if(조건){
 		}
 
 switch 코딩은 불편 가독성 편함
+조건이 많을 시에는 switch문을 쓰는게 편함.
+
+//변수season이랑 case랑 비교해서 맞으면 출력 break 안잊도록 :란 것도 주의
+//default가 else같은 의미 예외를 다 처리하는 구문 이경우 break안쓰는거 주의
+//case에는 범위지정이 안된다. 즉 부등호로 조건문만들땐 if문 사용
+//스위치의 경우 만족해도 밑으로 계속 읽고 실행하기에 브레이크를 걸어줘야 함.
+//혹시 return이 사용된다면 거기서 종료 시키기 떄문에 break 사용 할 필요 없다.
+	switch(season) {
+		case "spring" :
+			System.out.println("봄입니다.");
+			break;
+		case "summer" :
+			System.out.println("여름입니다.");
+			break;
+		case "fall" :
+			System.out.println("가을입니다.");
+			break;
+		case "winter" :
+			System.out.println("겨울입니다.");
+			break;
+		default:
+			System.out.println("잘못된 입력입니다.");
+		}
 
 ●비교구문
 /*
@@ -87,3 +110,16 @@ switch 코딩은 불편 가독성 편함
 ==경우는 저장되는 메모리 값이 다를경우 동일한 문자라 하여도 다른 값으로 처리 하기 때문에
 대상에는 null값은 올 수가 없다. null값과 비교하려면 null대상을 ()에 넣고 비교한다.
 */
+
+●추가판별
+&& = and
+|| = or
+
+●삼항연산자
+if랑 else만 사용된 코드를 한줄로 만든경우.
+/*
+삼항 연산자
+num > 10의 조건을 본다. = ?의미
+맞으면 20 아니면 10 이란 의미
+*/
+num = (num > 10)?20:10;
