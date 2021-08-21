@@ -35,6 +35,9 @@ for(int i = 0; i < ageArray.length; i++) {
 ●빈
 다양한 타입을 넣을 수 있다.
 
+●컬렉션 = 리스트와 맵같은 한객체에 여러가지를 담을 수 있는 경우
+컬렉션 다뤄본적 있냐
+현장에서 리스트중에 어레이 리스트 매중에선 허쉬맵을 다뤄본 적 있습니다.
 
 ●리스트 (만들어진 클래스이다.)
 확장for문도 같이 배워두는게 좋음
@@ -53,8 +56,17 @@ nameList.add("또치");
 길이 구하는 함수느 
 nameList.size();
 
-출력하는 함수는
+출력하는 함수는 반복문 안에서 출력경우
 System.out.println(nameList.get(i));
+
+리스트에서 int를 사용 못함
+int 상위 버전을 사용 해야됨. = Wraperclass를 써야됨
+Integer를 사용하면됨 (대문자주의)
+근데 이는 불필요하게 큰 것.
+List<Integer> ageList = new ArrayList<Integer>();
+불린의 경우도 Wraperclass를 써야함.
+List<Boolean> ageList = new ArrayList<Boolean>();
+
 
 ★확장 for문
 증가값 넣을 필요도 없다. 처음부터 끝까지 돔
@@ -65,3 +77,5 @@ System.out.println(nameList.get(i));
 for(String name:nameList) {
 	System.out.println(name);
 }
+
+●●컨트롤 F로 문자 검색, 수정이 용이함
