@@ -17,7 +17,7 @@ public class Method_10 {
 			}
 		}
 		else{
-			System.out.println("해당값이 없습니다.");
+			System.out.println("해당값이 없습	니다.");
 		}
 
 	}

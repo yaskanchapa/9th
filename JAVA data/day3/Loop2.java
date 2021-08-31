@@ -7,7 +7,6 @@ public class Loop2 {
 
 		for(int i=0; i<9; i++) {
 			System.out.println("2×" + (i+1) + " = " + 2*(i+1));
-
 		}
 
 		System.out.println("<구구단 2단 생성 방법2>");
